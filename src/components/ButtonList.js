@@ -1,6 +1,11 @@
+import Button from "./Button";
+import { Lists } from "../utils/constants";
+
 const ButtonList = () => {
   return (
-    <div>ButtonList</div>
+    <div className="flex">
+      {Lists.map((list, index) => <Button key={`list${index}`} name={list} />)}
+    </div>
   )
 }
 
