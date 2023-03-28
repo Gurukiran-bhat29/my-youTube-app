@@ -1,12 +1,31 @@
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
+import { YOUTUBE_SEARCH_SUGGESTIONS_API } from "../utils/constants";
 
 const Head = () => {
-const dispatch = useDispatch();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+
+  const dispatch = useDispatch();
 
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
   }
+
+  const getSeachSuggestions = async () => {
+    const data = await fetch(YOUTUBE_SEARCH_SUGGESTIONS_API + searchQuery);
+    const jsonData = await data.json();
+    setSuggestions(jsonData[1]);
+  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => getSeachSuggestions(), 200);
+
+    return () => {
+      clearTimeout(timer);
+    }
+  }, [searchQuery]);
 
   return (
     <div className="grid grid-flow-col p-5 shadow-xl justify-between bg-pink-100 sm:bg-blue-700 md:bg-purple-400">
@@ -25,14 +44,19 @@ const dispatch = useDispatch();
       </div>
       <div className="col-span-10 text-center">
         <input
+          value={searchQuery}
           className="p-2 w-1/2 rounded-3xl"
           type="text"
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
         <button
           className="p-2 text-white text-sm rounded-xl hover:bg-green-100 hover:text-black"
         >
           Search
         </button>
+        <ul>
+          {suggestions.map((suggestion) => <li>{suggestion}</li>)}
+        </ul>
       </div>
       <div className="col-span-2">
         <img
