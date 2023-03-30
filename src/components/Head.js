@@ -7,6 +7,7 @@ import { cacheResults } from "../utils/searchSlice";
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setshowSuggestions] = useState(false);
 
   const dispatch = useDispatch();
   const searchCache = useSelector((store) => store.search);
@@ -45,7 +46,7 @@ const Head = () => {
   }, [searchQuery]);
 
   return (
-    <div className="grid grid-flow-col p-5 shadow-xl justify-between bg-pink-100 sm:bg-blue-700 md:bg-purple-400">
+    <div className="grid grid-flow-col p-5 shadow-xl sticky top-0 justify-between bg-pink-100 sm:bg-blue-700 md:bg-purple-400">
       <div className="flex col-span-1">
         <img
           onClick={() => toggleMenuHandler()}
@@ -64,15 +65,28 @@ const Head = () => {
           value={searchQuery}
           className="p-2 w-1/2 rounded-3xl"
           type="text"
+          onFocus={() => setshowSuggestions(true)}
+          onBlur={() => setshowSuggestions(false)}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
         <button
-          className="p-2 text-white text-sm rounded-xl hover:bg-green-100 hover:text-black"
+          className="p-2 text-white text-sm rounded-3xl hover:bg-green-100 hover:text-black"
         >
           Search
         </button>
-        <ul>
-          {suggestions.map((suggestion) => <li>{suggestion}</li>)}
+        <ul className="bg-white mt-1 shadow-lg absolute w-1/3 left-[30.5%] text-left rounded-lg">
+          {showSuggestions && suggestions.map((suggestion) => {
+            return (
+              <li className="flex p-2">
+                <img
+                  className="w-6 h-6 mr-2"
+                  alt="suggestion-icon"
+                  src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/search-512.png"
+                />
+                {suggestion}
+              </li>
+            )
+          })}
         </ul>
       </div>
       <div className="col-span-2">
