@@ -7,4 +7,8 @@ export const YOUTUBE_SEARCH_SUGGESTIONS_API =
   ;
 export const Lists = ['All', 'Gaming', 'Songs', 'Live', 'Cricket', 'Football', 'Mixes', 'News', 'Comedy'];
 
+export const YOUTUBE_KEYWORD_API_PART1 =
+  'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=';
 
+export const YOUTUBE_KEYWORD_API_PART2 =
+  '&key=' + process.env.REACT_APP_GOOGLE_API_KEY;

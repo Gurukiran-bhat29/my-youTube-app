@@ -1,10 +1,78 @@
-const CommentContainer = ({ info }) => {
+const CommentContainer = () => {
+
+  const commentData = [
+    {
+      name: 'Guru kiran 2',
+      comment: 'refdsf fsdf sfs fds fsdfsfsdf',
+      replies: [
+        {
+          name: 'Vignesh',
+          comment: 'refdsf fsdf sfs fds fsdfsfsdf',
+          replies: [
+            {
+              name: 'Soorya',
+              comment: 'refdsf fsdf sfs fds fsdfsfsdf',
+              replies: [
+                {
+                  name: 'Noor',
+                  comment: 'refdsf fsdf sfs fds fsdfsfsdf',
+                  replies: [],
+                }
+              ],
+            }
+          ],
+        }
+      ]
+    },
+    {
+      name: 'Guru kiran 1',
+      comment: 'refdsf fsdf sfs fds fsdfsfsdf',
+      replies: [
+        {
+          name: 'Amod',
+          comment: 'refdsf fsdf sfs fds fsdfsfsdf',
+          replies: [
+            {
+              name: 'Amod',
+              comment: 'refdsf fsdf sfs fds fsdfsfsdf',
+              replies: [],
+            },
+          ],
+        },
+        {
+          name: 'Shreyas',
+          comment: 'refdsf fsdf sfs fds fsdfsfsdf',
+          replies: [],
+        }
+      ]
+    },
+    {
+      name: 'Guru kiran 3',
+      comment: 'refdsf fsdf sfs fds fsdfsfsdf',
+      replies: []
+    },
+    {
+      name: 'Guru kiran 4',
+      comment: 'refdsf fsdf sfs fds fsdfsfsdf',
+      replies: []
+    },
+    {
+      name: 'Guru kiran 5',
+      comment: 'refdsf fsdf sfs fds fsdfsfsdf',
+      replies: []
+    },
+    {
+      name: 'Guru kiran 6',
+      comment: 'refdsf fsdf sfs fds fsdfsfsdf',
+      replies: []
+    }
+  ];
 
   const Comment = ({ info }) => {
     const { name, comment, replies } = info;
 
     return (
-      <div className="flex p-4 bg-gray-200 rounded-md shadow-md">
+      <div className="flex p-4 my-4 bg-gray-200 rounded-md shadow-md">
         <img
           className="w-12 h-12"
           alt="user-comment"
@@ -13,7 +81,9 @@ const CommentContainer = ({ info }) => {
         <div className="ml-4">
           <p>{name}</p>
           <p>{comment}</p>
-          {replies && replies.map((reply) => <Comment info={reply} />)}
+          <div className="border-l-2 border-l-gray-400">
+            {replies && replies.map((reply, index) => <Comment key={reply.name + index} info={reply} />)}
+          </div>
         </div>
       </div>
     )
@@ -22,7 +92,7 @@ const CommentContainer = ({ info }) => {
   return (
     <div className="mx-10">
       <p className="font-bold text-lg">Comments:</p>
-      {info.map((infuu) => <Comment info={infuu} />)}
+      {commentData.map((data, index) => <Comment key={data.name + index} info={data} />)}
     </div>
   )
 }
