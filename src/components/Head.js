@@ -45,8 +45,7 @@ const Head = () => {
       } else {
         getSeachSuggestions();
       }
-    }, 200);
-
+    }, 1500);
 
     return () => {
       clearTimeout(timer);
