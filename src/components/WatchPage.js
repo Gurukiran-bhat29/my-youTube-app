@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { closeMenu } from "../utils/appSlice";
-import { addMessage } from "../utils/chatSlice";
+import { addMessage, clearMessage } from "../utils/chatSlice";
 import ChatContainer from "./ChatContainer";
 import CommentContainer from "./CommentContainer";
 
@@ -14,6 +14,8 @@ const WatchPage = () => {
 
   useEffect(() => {
     dispatch(closeMenu());
+
+    return () => dispatch(clearMessage())
   }, [])
 
   const onSubmitChat = (e) => {
