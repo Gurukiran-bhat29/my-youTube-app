@@ -1,19 +1,19 @@
 import { useState, useEffect, } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { createSearchParams, useNavigate } from "react-router-dom";
 import { toggleMenu } from "../utils/appSlice";
-import {
-  YOUTUBE_KEYWORD_API_PART1,
-  YOUTUBE_KEYWORD_API_PART2,
-  YOUTUBE_SEARCH_SUGGESTIONS_API
-} from "../utils/constants";
+import { YOUTUBE_SEARCH_SUGGESTIONS_API } from "../utils/constants";
 import { cacheResults } from "../utils/searchSlice";
 
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  const [showSuggestions, setshowSuggestions] = useState(true);
+  const [showSuggestions, setshowSuggestions] = useState(false);
+  const [hoverSuggestion, setHoverSuggestion] = useState(false)
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const searchCache = useSelector((store) => store.search);
 
   const toggleMenuHandler = () => {
@@ -32,9 +32,18 @@ const Head = () => {
     )
   }
 
-  const onSelectSuggestion = (e) => {
-    setSearchQuery(e.target.innerText)
-    setshowSuggestions(false)
+  const onSelectSuggestion = (e, buttonFlag) => {
+    const event = !buttonFlag ? e.target.innerText : searchQuery;
+
+    setSearchQuery(event);
+    setshowSuggestions(false);
+
+    navigate({
+      pathname: "results",
+      search: createSearchParams({
+        search_query: e.target.innerText
+      }).toString()
+    });
   }
 
   useEffect(() => {
@@ -45,7 +54,7 @@ const Head = () => {
       } else {
         getSeachSuggestions();
       }
-    }, 1500);
+    }, 500);
 
     return () => {
       clearTimeout(timer);
@@ -73,18 +82,27 @@ const Head = () => {
           className="p-2 w-1/2 rounded-3xl"
           type="text"
           onFocus={() => setshowSuggestions(true)}
-          // onBlur={() => setshowSuggestions(false)}
+          onBlur={() => !hoverSuggestion && setshowSuggestions(false)}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
         <button
           className="p-2 text-white text-sm rounded-3xl hover:bg-green-100 hover:text-black"
+          onClick={(e) => onSelectSuggestion(e, true)}
         >
           Search
         </button>
-        <ul className="bg-white mt-1 shadow-lg absolute w-1/3 left-[30.5%] text-left rounded-lg">
-          {showSuggestions && suggestions.map((suggestion) => {
+        <ul
+          className="bg-white mt-1 shadow-lg absolute w-1/3 left-[30.5%] text-left rounded-lg"
+          onMouseOver={() => setHoverSuggestion(true)}
+          onMouseOut={() => setHoverSuggestion(false)}
+        >
+          {showSuggestions && suggestions.map((suggestion, index) => {
             return (
-              <li className="flex p-2 cursor-pointer" onClick={onSelectSuggestion}>
+              <li
+                key={suggestion + index}
+                className="flex p-2 cursor-pointer hover:bg-gray-100"
+                onClick={onSelectSuggestion}
+              >
                 <img
                   className="w-6 h-6 mr-2"
                   alt="suggestion-icon"

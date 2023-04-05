@@ -1,12 +1,16 @@
 import { Outlet } from "react-router-dom";
+import Head from "./Head";
 import SideBar from "./SideBar";
 
 const Body = () => {
   return (
-    <div className="flex">
-      <SideBar />
-      <Outlet />
-    </div>
+    <>
+      <Head />
+      <div className="flex">
+        <SideBar />
+        <Outlet />
+      </div>
+    </>
   )
 }
 
