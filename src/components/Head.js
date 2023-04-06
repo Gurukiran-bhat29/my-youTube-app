@@ -62,7 +62,7 @@ const Head = () => {
   }, [searchQuery]);
 
   return (
-    <div className="grid grid-flow-col p-5 shadow-xl sticky top-0 justify-between bg-pink-100 sm:bg-blue-700 md:bg-purple-400">
+    <div className="grid grid-flow-col p-5 shadow-xl sticky top-0 bg-white">
       <div className="flex col-span-1">
         <img
           onClick={() => toggleMenuHandler()}
@@ -76,21 +76,28 @@ const Head = () => {
           src="https://lh3.googleusercontent.com/3zkP2SYe7yYoKKe47bsNe44yTgb4Ukh__rBbwXwgkjNRe4PykGG409ozBxzxkrubV7zHKjfxq6y9ShogWtMBMPyB3jiNps91LoNH8A=s500"
         />
       </div>
-      <div className="col-span-10 text-center">
-        <input
-          value={searchQuery}
-          className="p-2 w-1/2 rounded-3xl"
-          type="text"
-          onFocus={() => setshowSuggestions(true)}
-          onBlur={() => !hoverSuggestion && setshowSuggestions(false)}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <button
-          className="p-2 text-white text-sm rounded-3xl hover:bg-green-100 hover:text-black"
-          onClick={(e) => onSelectSuggestion(e, true)}
-        >
-          Search
-        </button>
+      <div className="col-span-10">
+        <div className="flex justify-center">
+          <input
+            value={searchQuery}
+            placeholder='Search'
+            className="py-2.5 px-4 w-1/2 rounded-l-3xl border border-gray-500"
+            type="text"
+            onFocus={() => setshowSuggestions(true)}
+            onBlur={() => !hoverSuggestion && setshowSuggestions(false)}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button
+            className="px-6 text-white text-sm rounded-r-3xl bg-white hover:text-black border border-gray-500"
+            onClick={(e) => onSelectSuggestion(e, true)}
+          >
+            <img
+              className="w-6 h-6"
+              alt="search-icon"
+              src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/search-512.png"
+            />
+          </button>
+        </div>
         <ul
           className="bg-white mt-1 shadow-lg absolute w-1/3 left-[30.5%] text-left rounded-lg"
           onMouseOver={() => setHoverSuggestion(true)}
