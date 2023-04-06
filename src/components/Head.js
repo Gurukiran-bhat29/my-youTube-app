@@ -38,7 +38,7 @@ const Head = () => {
     setSearchQuery(event);
     setshowSuggestions(false);
 
-    navigate({
+    searchQuery && navigate({
       pathname: "results",
       search: createSearchParams({
         search_query: e.target.innerText
