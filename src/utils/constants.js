@@ -14,3 +14,6 @@ export const YOUTUBE_KEYWORD_API_PART2 =
   '&key=' + process.env.REACT_APP_GOOGLE_API_KEY;
 
 export const LIVE_CHAT_COUNT = 25;
+export const INFINITE_SCROLL_HIGHER_COUNT = 200;
+export const INFINITE_SCROLL_LOWER_COUNT = 100;
+
