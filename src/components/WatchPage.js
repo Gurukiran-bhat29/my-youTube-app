@@ -33,11 +33,11 @@ const WatchPage = () => {
 
   return (
     <div className="w-full">
-      <div className="flex">
-        <div className="p-10">
+      <div className="flex w-full">
+        <div className="px-10 py-10 w-[71%]">
           <iframe
             width="1200"
-            height="600"
+            height="500"
             src={"https://www.youtube.com/embed/" + searchParam.get('v')}
             title="YouTube video player"
             frameBorder="0"
@@ -45,20 +45,21 @@ const WatchPage = () => {
             allowFullScreen
           />
         </div>
-        <div className="w-full mr-10 my-10">
+        <div className="w-[29%] my-10 mr-10">
           <ChatContainer />
-          <form onSubmit={onSubmitChat}>
+          <form className="flex justify-center mt-2" onSubmit={onSubmitChat}>
             <input
+              placeholder=" Say Something.. "
+              className="w-3/4 p-2 border-2 border-black rounded-lg mr-2"
               type='text'
               value={liveMessage}
               onChange={(e) => setLiveMessage(e.target.value)}
             />
-            <button className="bg-blue-600 text-white px-2 py-1 rounded-md">Send</button>
+            <button className="bg-blue-600 text-white px-3 py-1 rounded-md">Send</button>
           </form>
         </div>
       </div>
       <CommentContainer />
-
     </div>
   )
 }
