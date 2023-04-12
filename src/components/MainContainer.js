@@ -1,7 +1,6 @@
 import VideoContainer from "./VideoContainer";
 
 const MainContainer = () => {
-   
   return (
     <>
       <VideoContainer />
