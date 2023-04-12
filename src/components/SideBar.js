@@ -8,7 +8,7 @@ const SideBar = () => {
   if (!isMenuOpen) return null;
 
   return (
-    <div className="px-4 h-[100%] bg-white fixed lg:sticky top-23 sm:w-[25%]">
+    <div className="px-4 h-[100%] bg-white fixed lg:sticky top-[88px] sm:w-[25%] lg:w-auto">
       <div className="border-b-2 py-2.5 border-gray-300">
         <ul className="text-center">
           <Link to='/' className="flex bg-gray-300 p-2 justify-center items-center rounded-lg">
