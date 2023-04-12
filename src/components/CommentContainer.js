@@ -90,7 +90,7 @@ const CommentContainer = () => {
   }
 
   return (
-    <div className="mx-10">
+    <div className="lg:w-[74%] px-10 my-5 lg:my-0">
       <p className="font-bold text-lg">Comments:</p>
       {commentData.map((data, index) => <Comment key={data.name + index} info={data} />)}
     </div>

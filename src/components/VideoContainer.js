@@ -5,11 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { YOUTUBE_VIDEO_API } from "../utils/constants";
 import { addVideos, saveVidoes } from "../utils/videoSlice";
+import ButtonList from "./ButtonList";
 import VideoCard from "./VideoCard";
 
 const VideoContainer = () => {
-  const [y, setY] = useState(document.scrollingElement.scrollHeight);
   const [videos, setVideos] = useState([]);
+  const [y, setY] = useState(document.scrollingElement.scrollHeight);
 
   const savedVideos = useSelector((store) => store.video.videos);
   const dispatch = useDispatch();
@@ -50,14 +51,17 @@ const VideoContainer = () => {
   }
 
   return (
-    <div className="flex flex-wrap">
-      {savedVideos.map((video, index) => {
-        return (
-          <Link key={video.id + index} to={'watch?v=' + video.id}>
-            <VideoCard info={video} />
-          </Link>
-        )
-      })}
+    <div>
+      <ButtonList />
+      <div className="flex flex-wrap justify-center">
+        {savedVideos.map((video, index) => {
+          return (
+            <Link key={video.id + index} to={'watch?v=' + video.id}>
+              <VideoCard info={video} />
+            </Link>
+          )
+        })}
+      </div>
     </div>
   )
 }
