@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { INFINITE_SCROLL_HIGHER_COUNT, INFINITE_SCROLL_LOWER_COUNT } from "./constants";
+import { INFINITE_SCROLL_COUNT, SCROLL_OFFSET } from "./constants";
 
 const videoSlice = createSlice({
   name: 'video',
@@ -11,12 +11,10 @@ const videoSlice = createSlice({
       state.videos = action.payload;
     },
     addVideos: (state, action) => {
-      state.videos = [].concat(...state.videos, action.payload);
+      state.videos = [...state.videos, ...action.payload];
 
-      if (state.videos.length > INFINITE_SCROLL_HIGHER_COUNT) {
-        state.videos.splice(0, 100)
-      } else if (state.videos.length > INFINITE_SCROLL_LOWER_COUNT) {
-        state.videos.splice(0, 20)
+      if (state.videos.length > INFINITE_SCROLL_COUNT) {
+        state.videos.splice(0, SCROLL_OFFSET)
       }
     }
   }

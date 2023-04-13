@@ -20,16 +20,12 @@ const VideoContainer = () => {
   }, []);
 
   const handleNavigation = useCallback(() => {
-    const timer = setTimeout(() => {
 
-      if (y < window.scrollY) {
-        // scrolling down
-        dispatch(addVideos(videos))
-      }
-      setY(window.scrollY)
-    }, 100)
-
-    return () => clearTimeout(timer);
+    if (y < window.scrollY) {
+      // scrolling down
+      dispatch(addVideos(videos))
+    }
+    setY(window.scrollY)
 
   }, [y]);
 
