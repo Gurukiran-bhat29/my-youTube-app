@@ -1,8 +1,26 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { closeMenu, openMenu } from "../utils/appSlice";
 
 const SideBar = () => {
   const isMenuOpen = useSelector(store => store.app.isMenuOpen);
+  const dispatch = useDispatch();
+
+  const handleResize = () => {
+    if (window.innerWidth < 1280) {
+      dispatch(closeMenu());
+    } else {
+      dispatch(openMenu());
+    }
+  }
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, [])
 
   // Early return pattern
   if (!isMenuOpen) return null;
