@@ -4,6 +4,7 @@ import { createSearchParams, useNavigate } from "react-router-dom";
 import { toggleMenu } from "../utils/appSlice";
 import { YOUTUBE_SEARCH_SUGGESTIONS_API } from "../utils/constants";
 import { cacheResults } from "../utils/searchSlice";
+import Logo from '../assests/images/youTube.jpg'
 
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -73,7 +74,7 @@ const Head = () => {
         <img
           className="h-12"
           alt="youtube"
-          src="https://lh3.googleusercontent.com/3zkP2SYe7yYoKKe47bsNe44yTgb4Ukh__rBbwXwgkjNRe4PykGG409ozBxzxkrubV7zHKjfxq6y9ShogWtMBMPyB3jiNps91LoNH8A=s500"
+          src={Logo}
         />
       </div>
       <div className="col-span-10">
