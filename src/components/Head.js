@@ -1,6 +1,6 @@
 import { useState, useEffect, } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createSearchParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toggleMenu } from "../utils/appSlice";
 import { YOUTUBE_SEARCH_SUGGESTIONS_API } from "../utils/constants";
 import { cacheResults } from "../utils/searchSlice";
@@ -39,12 +39,7 @@ const Head = () => {
     setSearchQuery(event);
     setshowSuggestions(false);
 
-    searchQuery && navigate({
-      pathname: "results",
-      search: createSearchParams({
-        search_query: e.target.innerText
-      }).toString()
-    });
+    searchQuery && navigate("/results?search_query=" + e.target.innerText);
   }
 
   useEffect(() => {
@@ -72,14 +67,16 @@ const Head = () => {
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiC3wMxCwXBR4fAujFYPsrQTgWtn1820Q1l3QmnmU&s"
         />
         <img
+          data-testid='logo'
           className="h-12"
           alt="youtube"
           src={Logo}
         />
       </div>
       <div className="col-span-10">
-        <div className="flex justify-center">
+        <div className="flex justify-center" data-testid='search-field'>
           <input
+            data-testid='search-input'
             value={searchQuery}
             placeholder='Search'
             className="py-2.5 px-4 w-1/2 rounded-l-3xl border border-gray-500"
@@ -89,6 +86,7 @@ const Head = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           <button
+            data-testid='search-btn'
             className="px-6 text-white text-sm rounded-r-3xl bg-white hover:text-black border border-gray-500"
             onClick={(e) => onSelectSuggestion(e, true)}
           >
@@ -100,6 +98,7 @@ const Head = () => {
           </button>
         </div>
         <ul
+          data-testid='search-suggestion'
           className="bg-white mt-1 shadow-lg absolute w-1/3 left-[30.5%] text-left rounded-lg"
           onMouseOver={() => setHoverSuggestion(true)}
           onMouseOut={() => setHoverSuggestion(false)}
@@ -107,6 +106,7 @@ const Head = () => {
           {showSuggestions && suggestions.map((suggestion, index) => {
             return (
               <li
+                data-testid='suggestions'
                 key={suggestion + index}
                 className="flex p-2 cursor-pointer hover:bg-gray-100"
                 onClick={onSelectSuggestion}
@@ -124,6 +124,7 @@ const Head = () => {
       </div>
       <div className="col-span-2">
         <img
+          data-testid='user-icon'
           className="h-12"
           alt="user-icon"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSYyNXOWAO3zkAU8IsCQ7ITRY1FxAnQq675gUmpbV_6A&s"

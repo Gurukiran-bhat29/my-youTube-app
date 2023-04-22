@@ -7,10 +7,11 @@ import { YOUTUBE_VIDEO_API } from "../utils/constants";
 import { addVideos, saveVidoes } from "../utils/videoSlice";
 import ButtonList from "./ButtonList";
 import VideoCard from "./VideoCard";
+import Shimmer from "./Shimmer";
 
 const VideoContainer = () => {
   const [videos, setVideos] = useState([]);
-  const [y, setY] = useState(document.scrollingElement.scrollHeight);
+  // const [y, setY] = useState(document.scrollingElement.scrollHeight);
 
   const savedVideos = useSelector((store) => store.video.videos);
   const dispatch = useDispatch();
@@ -46,10 +47,12 @@ const VideoContainer = () => {
     setVideos(jsonData.items)
   }
 
+  if(savedVideos.length === 0) return <Shimmer />
+
   return (
-    <div>
+    <div data-testid="video-container">
       <ButtonList />
-      <div className="flex flex-wrap justify-center">
+      <div data-testid="video-result" className="flex flex-wrap justify-center">
         {savedVideos.map((video, index) => {
           return (
             <Link key={video.id + index} to={'watch?v=' + video.id}>

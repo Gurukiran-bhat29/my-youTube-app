@@ -6,6 +6,7 @@ import {
   YOUTUBE_KEYWORD_API_PART2
 } from "../utils/constants";
 import VideoCard from "./VideoCard";
+import Shimmer from "./Shimmer";
 
 const SearchResult = () => {
   const [searchVideos, setSearchVideos] = useState([]);
@@ -22,6 +23,8 @@ const SearchResult = () => {
   useEffect(() => {
     getSearchResults(searchParam.get('search_query'));
   }, [])
+
+  if (searchVideos.length === 0) return <Shimmer />
 
   return (
     <div className="flex flex-wrap">
