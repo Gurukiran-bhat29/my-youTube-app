@@ -11,7 +11,7 @@ import Shimmer from "./Shimmer";
 
 const VideoContainer = () => {
   const [videos, setVideos] = useState([]);
-  // const [y, setY] = useState(document.scrollingElement.scrollHeight);
+  const [y, setY] = useState(document.scrollingElement.scrollHeight);
 
   const savedVideos = useSelector((store) => store.video.videos);
   const dispatch = useDispatch();
