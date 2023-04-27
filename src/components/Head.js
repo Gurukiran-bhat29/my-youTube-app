@@ -59,16 +59,16 @@ const Head = () => {
 
   return (
     <div className="grid grid-flow-col p-5 shadow-xl sticky top-0 bg-white">
-      <div className="flex col-span-1">
+      <div className="flex flex-col-reverse col-span-1 sm:flex-row">
         <img
           onClick={() => toggleMenuHandler()}
-          className="h-12 cursor-pointer"
+          className="h-8 sm:h-12 cursor-pointer"
           alt="menu"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiC3wMxCwXBR4fAujFYPsrQTgWtn1820Q1l3QmnmU&s"
         />
         <img
           data-testid='logo'
-          className="h-12"
+          className="h-8 sm:h-12"
           alt="youtube"
           src={Logo}
         />
