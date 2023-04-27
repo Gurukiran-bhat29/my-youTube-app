@@ -32,9 +32,9 @@ const WatchPage = () => {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full overflow-x-hidden">
       <div className="xl:flex w-full">
-        <div className="px-10 py-10 xl:w-[75%]">
+        <div className="px-2 sm:px-4 md:px-10 py-5 md:py-10 xl:w-[75%]">
           <iframe
             width="100%"
             height="650"
@@ -45,7 +45,7 @@ const WatchPage = () => {
             allowFullScreen
           />
         </div>
-        <div className="xl:w-[25%] mr-10 ml-10 xl:ml-0 xl:mt-10">
+        <div className="xl:w-[25%] mr-2 sm:mr-4 md:mr-10 ml-2 sm:ml-4 md:ml-10 xl:ml-0 xl:mt-10">
           <ChatContainer />
           <form className="flex justify-center mt-2" onSubmit={onSubmitChat}>
             <input

@@ -58,11 +58,11 @@ const Head = () => {
   }, [searchQuery]);
 
   return (
-    <div className="grid grid-flow-col p-5 shadow-xl sticky top-0 bg-white">
-      <div className="flex flex-col-reverse col-span-1 sm:flex-row">
+    <div className="grid grid-flow-col p-5 shadow-xl sticky top-0 bg-white items-center">
+      <div className="flex flex-col-reverse col-span-3 sm:col-span-1 sm:flex-row">
         <img
           onClick={() => toggleMenuHandler()}
-          className="h-8 sm:h-12 cursor-pointer"
+          className="h-10 sm:h-12 cursor-pointer"
           alt="menu"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiC3wMxCwXBR4fAujFYPsrQTgWtn1820Q1l3QmnmU&s"
         />
@@ -99,7 +99,7 @@ const Head = () => {
         </div>
         <ul
           data-testid='search-suggestion'
-          className="bg-white mt-1 shadow-lg absolute w-1/3 left-[30.5%] text-left rounded-lg"
+          className="bg-white mt-1 shadow-lg absolute w-1/3 left-[29%] sm:left-[36%] md:left-[34.3%] lg:left-[33%] xl:left-[31.5%] 2xl:left-[31%] text-left rounded-lg"
           onMouseOver={() => setHoverSuggestion(true)}
           onMouseOut={() => setHoverSuggestion(false)}
         >
