@@ -3,7 +3,7 @@ export const YOUTUBE_VIDEO_API =
 ;
 
 export const YOUTUBE_SEARCH_SUGGESTIONS_API =
-  'http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q='
+  'https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q='
   ;
 export const Lists = ['All', 'Gaming', 'Songs', 'Live', 'Cricket', 'Football', 'Mixes', 'News', 'Comedy'];
 
