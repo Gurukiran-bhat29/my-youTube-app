@@ -1,6 +1,6 @@
 import { useState, useEffect, } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { createSearchParams, useNavigate } from "react-router-dom";
 import { toggleMenu } from "../utils/appSlice";
 import { YOUTUBE_SEARCH_SUGGESTIONS_API } from "../utils/constants";
 import { cacheResults } from "../utils/searchSlice";
@@ -39,7 +39,12 @@ const Head = () => {
     setSearchQuery(event);
     setshowSuggestions(false);
 
-    searchQuery && navigate("/results?search_query=" + e.target.innerText);
+    searchQuery && navigate({
+      pathname: "results",
+      search: createSearchParams({
+        search_query: event
+      }).toString()
+    });
   }
 
   useEffect(() => {
