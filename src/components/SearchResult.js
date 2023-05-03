@@ -12,17 +12,17 @@ const SearchResult = () => {
   const [searchVideos, setSearchVideos] = useState([]);
   const [searchParam] = useSearchParams();
 
-  const getSearchResults = async (params) => {
+  const getSearchResults = async () => {
     const response = await fetch(
-      YOUTUBE_KEYWORD_API_PART1 + params + YOUTUBE_KEYWORD_API_PART2
+      YOUTUBE_KEYWORD_API_PART1 + searchParam + YOUTUBE_KEYWORD_API_PART2
     );
     const jsonResponse = await response.json();
-    setSearchVideos(jsonResponse.items);
+    jsonResponse.items.length > 0 && setSearchVideos(jsonResponse.items);
   }
 
   useEffect(() => {
     getSearchResults(searchParam.get('search_query'));
-  }, [])
+  }, [searchParam])
 
   if (searchVideos.length === 0) return <Shimmer />
 

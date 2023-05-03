@@ -43,11 +43,15 @@ const VideoContainer = () => {
   const getVideos = async () => {
     const data = await fetch(YOUTUBE_VIDEO_API);
     const jsonData = await data.json();
-    dispatch(saveVidoes(jsonData.items))
-    setVideos(jsonData.items)
+    const responsePresent =
+      jsonData.items.length > 0
+        ? true
+        : false;
+    responsePresent && dispatch(saveVidoes(jsonData.items))
+    responsePresent && setVideos(jsonData.items)
   }
 
-  if(savedVideos.length === 0) return <Shimmer />
+  if (savedVideos.length === 0) return <Shimmer />
 
   return (
     <div data-testid="video-container">
