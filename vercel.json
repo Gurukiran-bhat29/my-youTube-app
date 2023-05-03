@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/https://suggestqueries.google.com/(.*)",
+      "source": "https://suggestqueries.google.com/(.*)",
       "headers": [
         {
           "key": "Access-Control-Allow-Credentials",
