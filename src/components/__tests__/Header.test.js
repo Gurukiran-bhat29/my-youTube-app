@@ -1,13 +1,47 @@
-import { fireEvent, render, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import Header from '../Head';
 import { Provider } from 'react-redux';
 import store from '../../utils/store';
+import { BrowserRouter } from 'react-router-dom';
 import { StaticRouter } from 'react-router-dom/server';
-import "@testing-library/jest-dom";
 import { SUGGESTIONS_DATA } from '../../mocks/loadData';
+import "@testing-library/jest-dom";
+
+// test("should render header component with Login button", () => {
+//   render(
+//     <BrowserRouter>
+//       <Provider store={store}>
+//         <Header />
+/*         <Unknown />   <-- Here we can import which ever is being involved for the integration testing -->  */
+//       </Provider>
+//     </BrowserRouter>
+//   );
+
+//   const loginButton = screen.getByRole('button', { name: 'login' });
+//   // const loginButton = screen.getAllByText('login');
+
+//   expect(loginButton).toBeInTheDocument();
+// })
+
+// test("should change component with Login button to Logout", () => {
+//   render(
+//     <BrowserRouter>
+//       <Provider store={store}>
+//         <Header />
+//       </Provider>
+//     </BrowserRouter>
+//   );
+
+//   const loginButton = screen.getByRole('button', { name: 'login' });
+
+//   fireEvent.click(loginButton);
+
+//   const logoutButton = screen.getByRole('button', { name: 'logout'});
+
+//   expect(logoutButton).toBeInTheDocument();
+// })
 
 test("Logo should load on Header rener", () => {
-  // eslint-disable-next-line testing-library/render-result-naming-convention
   const header = render(
     <StaticRouter>
       <Provider store={store}>
@@ -16,13 +50,11 @@ test("Logo should load on Header rener", () => {
     </StaticRouter>
   );
 
-  // eslint-disable-next-line testing-library/prefer-screen-queries
   const logo = header.getAllByTestId('logo');
   expect(logo[0].src).toBe('http://localhost/dummy.jpg');
 })
 
 test("Search field should load on render", () => {
-  // eslint-disable-next-line testing-library/render-result-naming-convention
   const header = render(
     <StaticRouter>
       <Provider store={store}>
@@ -31,7 +63,6 @@ test("Search field should load on render", () => {
     </StaticRouter>
   );
 
-  // eslint-disable-next-line testing-library/prefer-screen-queries
   const searchField = header.getByTestId('search-field');
 
   // expect(searchField.innerHTML).toBe('Search');
@@ -53,7 +84,6 @@ jest.mock('react-router-dom', () => ({
 }));
 
 test("Search suggestions on enter (String)", async () => {
-  // eslint-disable-next-line testing-library/render-result-naming-convention
   const header = render(
     <StaticRouter>
       <Provider store={store}>
@@ -80,7 +110,6 @@ test("Search suggestions on enter (String)", async () => {
 })
 
 test("user icon should load on render", () => {
-  // eslint-disable-next-line testing-library/render-result-naming-convention
   const header = render(
     <StaticRouter>
       <Provider store={store}>
@@ -89,7 +118,6 @@ test("user icon should load on render", () => {
     </StaticRouter>
   );
 
-  // eslint-disable-next-line testing-library/prefer-screen-queries
   const icon = header.getByTestId('user-icon');
   expect(icon.src).toBe('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSYyNXOWAO3zkAU8IsCQ7ITRY1FxAnQq675gUmpbV_6A&s');
 })

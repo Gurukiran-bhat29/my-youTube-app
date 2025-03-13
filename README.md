@@ -81,3 +81,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
  - Install Babel dependencies
  - Configure Babel
  - Configure Parcel Config file to disable default babel transpilation 
+ - Jest - npx jest --init (To create config file)
+ - Install jsdom library
+ - Install @babel/preset-react - To enable JSX work in test cases and include it in Babel config
+ - Install @testing-library/jest-dom 

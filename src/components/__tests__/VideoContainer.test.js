@@ -1,11 +1,11 @@
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import VideoContainer from '../VideoContainer';
+import WatchPage from '../WatchPage';
 import { Provider } from 'react-redux';
 import store from '../../utils/store';
 import { StaticRouter } from 'react-router-dom/server';
 import { YOUTUBE_DATA } from '../../mocks/loadData';
 import "@testing-library/jest-dom";
-import WatchPage from '../WatchPage';
 
 global.fetch = jest.fn(() => {
   return Promise.resolve({
@@ -16,7 +16,6 @@ global.fetch = jest.fn(() => {
 })
 
 test("Videos should render on load", async () => {
-  // eslint-disable-next-line testing-library/render-result-naming-convention
   const body = render(
     <StaticRouter>
       <Provider store={store}>

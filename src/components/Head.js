@@ -1,6 +1,6 @@
 import { useState, useEffect, } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createSearchParams, useNavigate } from "react-router-dom";
+import { createSearchParams, Link, useNavigate } from "react-router-dom";
 import { toggleMenu } from "../utils/appSlice";
 import { YOUTUBE_SEARCH_SUGGESTIONS_API } from "../utils/constants";
 import { cacheResults } from "../utils/searchSlice";
@@ -134,6 +134,9 @@ const Head = () => {
           alt="user-icon"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSYyNXOWAO3zkAU8IsCQ7ITRY1FxAnQq675gUmpbV_6A&s"
         />
+      </div>
+      <div>
+        <Link to='contact-us'>Contact us</Link>
       </div>
     </div>
   )

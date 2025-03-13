@@ -8,6 +8,7 @@ import MainContainer from './components/MainContainer';
 
 const WatchPage = lazy(() => import('./components/WatchPage'));
 const SearchResult = lazy(() => import('./components/SearchResult'));
+const ContactUs = lazy(() => import('./components/ContactUs'));
 
 const appRouter = createBrowserRouter([
   {
@@ -32,6 +33,13 @@ const appRouter = createBrowserRouter([
             <SearchResult />
           </Suspense>
 
+      },
+      {
+        path: 'contact-us',
+        element:
+          <Suspense fallback={null}>
+            <ContactUs />
+          </Suspense>
       }
     ]
   }
