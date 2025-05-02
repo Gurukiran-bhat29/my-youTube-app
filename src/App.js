@@ -9,6 +9,7 @@ import MainContainer from './components/MainContainer';
 const WatchPage = lazy(() => import('./components/WatchPage'));
 const SearchResult = lazy(() => import('./components/SearchResult'));
 const ContactUs = lazy(() => import('./components/ContactUs'));
+const DynamicChart = lazy(() => import('./components/DynamicChart'));
 
 const appRouter = createBrowserRouter([
   {
@@ -39,6 +40,13 @@ const appRouter = createBrowserRouter([
         element:
           <Suspense fallback={null}>
             <ContactUs />
+          </Suspense>
+      },
+      {
+        path: 'charts',
+        element:
+          <Suspense fallback={null}>
+            <DynamicChart />
           </Suspense>
       }
     ]

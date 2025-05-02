@@ -29,9 +29,13 @@ const SideBar = () => {
     <div className="px-4 h-[100%] bg-white fixed xl:sticky top-[88px] sm:w-[25%] lg:w-auto">
       <div className="border-b-2 py-2.5 border-gray-300">
         <ul className="text-center">
-          <Link to='/' className="flex bg-gray-300 p-2 justify-center items-center rounded-lg">
+          <Link to='/' className="flex bg-gray-300 p-2 mb-2 justify-center items-center rounded-lg">
             <img className="w-8 h-8" alt='Home' src='https://cdn-icons-png.flaticon.com/512/25/25694.png' />
             <li className="text-gray-800 mx-4">Home</li>
+          </Link>
+          <Link to='/charts' className="flex bg-gray-300 p-2 justify-center items-center rounded-lg">
+            <img className="w-8 h-8" alt='Home' src='https://www.iconpacks.net/icons/1/free-chart-icon-646-thumb.png' />
+            <li className="text-gray-800 mx-4">Charts</li>
           </Link>
           <li className="py-2 text-gray-800">Shorts</li>
           <li className="py-2 text-gray-800">Videos</li>
